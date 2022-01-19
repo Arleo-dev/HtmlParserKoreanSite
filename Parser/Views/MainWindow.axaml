@@ -1,0 +1,53 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Parser.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:aIL="using:AsyncImageLoader"
+        x:Class="Parser.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Parser by Alexander Kelbas"
+        Width="900">
+
+  <Design.DataContext>
+    <vm:MainWindowViewModel/>
+  </Design.DataContext>
+
+  <StackPanel Orientation="Vertical">
+    <TextBlock Margin ="70, 10,10,10" Text="Enter your URL or will be used URL by default"/>
+    <StackPanel Orientation="Horizontal"
+                HorizontalAlignment="Center">
+      <TextBox Width="500" Text="{Binding Url}"/>
+      <Button Width="250"
+              HorizontalContentAlignment="Center"
+              Margin="10,0,0,0"
+              Command="{Binding OnClickCommand}"
+              Content="Click"/>
+    </StackPanel>
+    <StackPanel Orientation="Horizontal"
+                HorizontalAlignment="Center"
+                Margin="0,20,0,0">
+      <StackPanel Orientation="Vertical">
+        <Image VerticalAlignment="Top"
+               Width="160"
+               Height="160"
+               Margin="0,0,0,10" aIL:ImageLoader.Source="{Binding Image}"/>
+        <ListBox Items="{Binding AlbumItems}">
+          <ListBox.ItemTemplate>
+            <DataTemplate>
+              <TextBlock Text="{Binding}"/>
+            </DataTemplate>
+          </ListBox.ItemTemplate>
+        </ListBox>
+      </StackPanel>
+      <ListBox Margin="60,0,0,0" Items="{Binding MusicItems}">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <TextBlock Text="{Binding}"/>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+    </StackPanel>
+  </StackPanel>
+</Window>
